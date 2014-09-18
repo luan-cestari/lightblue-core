@@ -93,8 +93,7 @@ public class DataSourcesConfiguration implements JsonInitializable, Serializable
     public Map<String, DataSourceConfiguration> getDataSourcesByType(Class<?> clazz) {
         Map<String, DataSourceConfiguration> map = new HashMap<>();
         for (Map.Entry<String, DataSourceConfiguration> entry : datasources.entrySet()) {
-            Class<? extends DataSourceConfiguration> aClass = entry.getValue().getClass();
-            if (aClass.isAssignableFrom(clazz)) { // it was inverted
+            if (clazz.isAssignableFrom(entry.getValue().getClass())) {
                 map.put(entry.getKey(), entry.getValue());
             }
         }
